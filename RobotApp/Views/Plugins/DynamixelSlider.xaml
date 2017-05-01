@@ -1,0 +1,64 @@
+﻿<plugins:PluginBase x:Class="RobotApp.Views.Plugins.DynamixelSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RobotApp.Views.Plugins"
+             xmlns:plugins="clr-namespace:RobotApp.Views.Plugins"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <plugins:PluginBase.PluginContent>
+        <StackPanel>
+
+
+            <UniformGrid Columns="3">
+                <TextBlock Text="Available COM Ports"/>
+                <ComboBox Name="PathFileBox" ItemsSource="{Binding PortList}" SelectedItem="{Binding SelectedPort}" />
+                <mui:ModernButton IconData="{StaticResource SearchIconData}" 
+                                  Content="Refresh COMs" Command="{Binding DetectCOMsCommand}" HorizontalAlignment="Left" />
+            </UniformGrid>
+
+            <Button Content="{Binding ButtonText}" Command="{Binding ConnectCommand}"/>
+
+            <UniformGrid Columns="2">
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Theta 1: "/>
+                    <TextBlock Text="{Binding Theta1Value}"/>
+                </UniformGrid>
+                <Slider Minimum="-45" Maximum="45" Value="{Binding Theta1Value, Mode=TwoWay}" />
+
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Theta 2: "/>
+                    <TextBlock Text="{Binding Theta2Value}"/>
+                </UniformGrid>
+                <Slider Minimum="-135" Maximum="135" Value="{Binding Theta2Value, Mode=TwoWay}" />
+
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Theta 3: "/>
+                    <TextBlock Text="{Binding Theta3Value}"/>
+                </UniformGrid>
+                <Slider Minimum="-720" Maximum="720" Value="{Binding Theta3Value, Mode=TwoWay}" />
+
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Torque Enable Motor 1"/>
+                    <CheckBox  IsChecked="{Binding Torque1}"/>
+                </UniformGrid>
+                <StackPanel/>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Torque Enable Motor 2"/>
+                    <CheckBox  IsChecked="{Binding Torque2}"/>
+                </UniformGrid>
+                <StackPanel/>
+                <UniformGrid Columns="2">
+                    <TextBlock Text="Torque Enable Motor 3"/>
+                    <CheckBox  IsChecked="{Binding Torque3}"/>
+                </UniformGrid>
+
+            </UniformGrid>
+
+            <TextBlock Text="{Binding ErrorText}"/>
+
+        </StackPanel>
+    </plugins:PluginBase.PluginContent>
+</plugins:PluginBase>

@@ -1,0 +1,28 @@
+﻿<plugins:PluginBase x:Class="RobotApp.Views.Plugins.GeomagicTouch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:plugins="clr-namespace:RobotApp.Views.Plugins"
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:RobotApp.ViewModel"
+             xmlns:view="clr-namespace:RobotApp.Views"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <plugins:PluginBase.PluginContent>
+        <StackPanel>
+            <UniformGrid Columns="2">
+                <ComboBox Name="DeviceNamesBox" ItemsSource="{Binding DeviceNames}" SelectedItem="{Binding SelectedDeviceName}" />
+                    <Button Content="{Binding ConnectButtonText}" Command="{Binding ConnectCommand}" CommandParameter="{Binding ElementName=DeviceNamesBox, Path=SelectedItem}" />
+                <TextBlock Text="Update Period (milliseconds) :" HorizontalAlignment="Right"/>
+                <TextBox  Text="{Binding UpdatePeriod}" />
+                <TextBlock Text="Angle Type :" HorizontalAlignment="Right"/>
+                <ComboBox SelectedIndex="{Binding AngleType}">
+                    <ComboBoxItem>Pitch, Roll, Yaw</ComboBoxItem>
+                    <ComboBoxItem>Gimbal Angles</ComboBoxItem>
+                </ComboBox>
+
+            </UniformGrid>
+            <Button Content="Start" Command="{Binding StartCommand}" />
+        </StackPanel>
+    </plugins:PluginBase.PluginContent>
+</plugins:PluginBase>
